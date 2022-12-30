@@ -53,7 +53,7 @@ const ExpenseForm = props => {
         const enteredData = {
             id: Math.random().toString(),
             title: enteredTitle,
-            amount: enteredAmount,
+            amount: +enteredAmount,
             date: new Date(enteredDate)
         };
         // setUserInput({
