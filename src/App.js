@@ -1,9 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 import Expenses from './components/Expenses/Expenses';
+import NewExpense from './components/NewExpense/NewExpense';
+import { useState } from 'react';
 
 function App() {
-  const expenses = [
+  const [expenses, updateExpenses] = useState([
     {
       id: 'e1',
       title: 'Toilet Paper',
@@ -23,9 +25,20 @@ function App() {
       amount: 450,
       date: new Date(2021, 5, 12),
     },
-  ];
+  ]);
+  
+  const saveExpenseDataHandler = (newExpenseData) => {
+    console.log(newExpenseData);
+    updateExpenses((prevExpenses) => {
+      const temp = [newExpenseData, ...prevExpenses];
+      return temp;
+    });
+    console.log(expenses);
+  }
+
   return (
     <div className="App">
+      <NewExpense addNewExpenseData={saveExpenseDataHandler} />
       <Expenses expenses={expenses} />
     </div>
   );
